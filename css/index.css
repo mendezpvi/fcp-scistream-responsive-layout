@@ -1,0 +1,165 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    min-block-size: 100vh;
+    min-block-size: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #EEEEEE;
+    color: #021526;
+}
+
+/* LAYOUT */
+
+header,
+main,
+footer {
+    inline-size: 90vw;
+    min-inline-size: 18.75rem;
+    max-inline-size: 62.5rem;
+}
+
+header {
+    padding-block: .5em;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "tech"
+        "envi"
+        "nasa"
+        "phys"
+        "heal";
+    gap: 1.5em;
+}
+
+footer {
+    margin-top: 2em;
+}
+
+/* CARD */
+
+.card {
+    background-color: #D8D8D8;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    outline-offset: 2px;
+    transition: .2s;
+}
+
+.card a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.technology {
+    grid-area: tech;
+}
+
+.environment {
+    grid-area: envi;
+}
+
+.nasa {
+    grid-area: nasa;
+}
+
+.physics {
+    grid-area: phys;
+}
+
+.health {
+    grid-area: heal;
+}
+
+.card-content {
+    padding: .8em .5em;
+}
+
+/* IMAGE */
+
+img {
+    inline-size: 100%;
+    block-size: auto;
+    font-style: italic;
+    vertical-align: middle;
+}
+
+/* TYPOGRAPHY */
+
+h1 {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+h2 {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    color: #430A5D;
+    letter-spacing: .5px;
+}
+
+p {
+    line-height: 1.5;
+}
+
+footer p {
+    font-size: .8rem;
+    line-height: 1;
+}
+
+footer p > a {
+    font-weight: 700;
+    text-decoration: underline wavy;
+    color: #430A5D;
+}
+
+/* MEDIA QUERIES */
+
+@media (width >=37.5rem) {
+    main {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "tech tech"
+            "envi nasa"
+            "phys nasa"
+            "heal heal";
+    }
+}
+
+@media (width >=55rem) {
+    main {
+        grid-template-columns: repeat(9, 1fr) repeat(3, minmax(4.375rem, 1fr));
+        grid-template-areas:
+            "tech tech tech tech tech tech envi envi envi nasa nasa nasa"
+            "phys phys phys heal heal heal heal heal heal nasa nasa nasa"
+    }
+}
+
+/* STATES */
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgb(48, 34, 170) 0px -3px 0px inset;
+}
+
+.card:focus-within {
+    outline: 2px solid blue;
+}
